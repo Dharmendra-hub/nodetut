@@ -1,17 +1,24 @@
+const path = require('path');
+
 const express = require('express');
+
+const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
-//Handling GET Requests instead of using .use we use .get
-router.get('/add-product', (req, res, next) => {
-    res.send(
-        '<form action="/admin/add-product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>'
-    );
-});
+// /admin/add-product => GET
+router.get('/add-product', adminController.getAddProduct);
 
-router.post('/add-poduct', (req, res, next) => { 
-    console.log(req.body);
-    res.redirect('/');
-});
+// /admin/products => GET
+router.get('/products', adminController.getProducts);
+
+// /admin/add-product => POST
+router.post('/add-product', adminController.postAddProduct);
+
+router.get('/edit-product/:productId', adminController.getEditProduct);
+
+router.post('/edit-product', adminController.postEditProduct);
+
+router.post('/delete-product', adminController.postDeleteProduct);
 
 module.exports = router;
