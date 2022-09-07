@@ -22,7 +22,6 @@ db.execute('SELECT * FROM products')
         console.log('db', err);
     });
 
-
 /**
  * Create middleware using express
  * Always use the '/' route at the end
